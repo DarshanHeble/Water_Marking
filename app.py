@@ -120,6 +120,18 @@ if uploaded_file is not None:
             caption="Brighter areas show where the watermark is embedded",
         )
 
+        # Download button for watermarked image
+        st.subheader("Download Watermarked Image")
+        buffer = io.BytesIO()
+        watermarked_image.save(buffer, format="PNG")
+        buffer.seek(0)
+        st.download_button(
+            label="Download Image",
+            data=buffer,
+            file_name="watermarked_image.png",
+            mime="image/png",
+        )
+
         # Attack Resistance Analysis
         st.subheader("Attack Resistance Analysis")
         with st.expander("View Attack Resistance Details"):
